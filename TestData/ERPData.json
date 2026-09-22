@@ -1,0 +1,50 @@
+{
+     "Suppliers":[
+        {
+            "supplierName":"Jolie",
+            "address":"Hyderabad",
+            "city":"Ameerpet",
+            "country":"India",
+            "contactPerson":"Qedge",
+            "phoneNumber":"78763354321",
+            "email":"rajesh@gmail.com",
+            "mobileNumber":"456789722651",
+            "notes":"Added Supplier"
+        },
+        {
+            "supplierName":"Angelina",
+            "address":"USA",
+            "city":"LA",
+            "country":"USA",
+            "contactPerson":"Deep1",
+            "phoneNumber":"7876514321",
+            "email":"DeeAng@gmail.com",
+            "mobileNumber":"45678297651",
+            "notes":"BeCop"
+        }
+    ],
+    "Customers":[
+        {
+            "CName":"Jolie",
+            "address":"USA",
+            "city":"LA",
+            "country":"USA",
+            "contactPerson":"Deep",
+            "phoneNumber":"78765114321",
+            "email":"DeeAng@gmail.com",
+            "mobileNumber":"456782297651",
+            "notes":"BeCop"
+        },
+        {
+           "CName":"A Jolie",
+            "address":"USA",
+            "city":"LA",
+            "country":"USA",
+            "contactPerson":"Deep",
+            "phoneNumber":"78744654321",
+            "email":"DeeAng@gmail.com",
+            "mobileNumber":"45678917651",
+            "notes":"BeCop"
+        }
+    ]
+}
