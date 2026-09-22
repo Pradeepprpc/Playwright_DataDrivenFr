@@ -65,7 +65,7 @@ export class StockPage{
     //method for stockitem details
     async StockItemDetails(AddCategory:string,CategoryNameInput:string,SupplierNumber:string,
         StockNumber:string,StockNameInput:string,
-        UOMID:string,UOMDescription:string,PurchasingPriceInput:string,
+        AddUnitOfMeasurement:string,PurchasingPriceInput:string,
         SellingPrice:string,Notes:string)
     {
         //await this.AddCategory.fill(CategoryNameInput)
@@ -73,13 +73,16 @@ export class StockPage{
         await this.SupplierNumber.waitFor()
         this.expNumber = await this.SupplierNumber.inputValue()
         await this.StockNameInput.fill(StockNameInput)
-        await this.AddUnitOfMeasurement.fill(UOMID)
-        await this.AddUnitOfMeasurement.fill(UOMDescription)
+        await this.AddUnitOfMeasurement.click()
+        await this.AddUnitOfMeasurement.selectOption(AddUnitOfMeasurement)
+        //await this.AddUnitOfMeasurement.fill(UOMDescription)
         await this.PurchasingPriceInput.fill(PurchasingPriceInput)
         await this.SellingPrice.fill(SellingPrice)
         await this.Notes.fill(Notes)
         await this.ClickAddButton.click()
     }
+
+
     ////method for alert messages
     async AlertMessages()
     {
