@@ -1,111 +1,99 @@
-import { expect, Locator, Page } from "@playwright/test";
-
-export class StockPage{
-    //declare properties for stock
-    page:Page
-    readonly StockLink:Locator
+import {Page,expect, Locator} from "@playwright/test"
+export class Stockpage{
+    Page:Page
+    readonly ClickStock:Locator
     readonly ClickAddIcon:Locator
-    //readonly AddCategory:Locator
-    readonly CategoryNameInput:Locator
-    readonly ClickCategoryAdd:Locator
+    readonly stockCategory:Locator
     readonly SupplierNumber:Locator
-    readonly StockNumber:Locator
-    readonly StockNameInput:Locator
-    readonly AddUnitOfMeasurement:Locator
-    readonly UOMID:Locator
-    readonly UOMDescription:Locator
-    readonly ClickUOMAdd:Locator
-    readonly PurchasingPriceInput:Locator 
+    readonly stockNumber:Locator
+    readonly stockName:Locator
+    readonly unitOfMeasurement:Locator
+    readonly PurchasingPrice:Locator
     readonly SellingPrice:Locator
     readonly Notes:Locator
-    readonly ClickAddButton:Locator 
+    readonly ClickAddBtn:Locator
     readonly ClickConfirmOk:Locator
-    readonly AlertOk:Locator
-    readonly SerachPanel:Locator
-    readonly SerachTextbox:Locator
-    readonly SearchButton:Locator
-    private expNumber!:string
-    
-    //constructor initialise values for properties
+    readonly ClickAlertOk:Locator
+    readonly ClickSearchPanel:Locator
+    readonly EnterSearchSnumber:Locator
+    readonly ClickSearchBtn:Locator
+    readonly StockGrid:Locator
+    private expNumber!: string;
+
     constructor(page:Page)
     {
-        this.page = page
-        this.StockLink = page.locator('#mi_a_stock_items')
-        this.ClickAddIcon = page.locator('span[data-phrase="AddLink"]').first()
-        //this.AddCategory = page.locator('aol_x_Category')
-        this.CategoryNameInput = page.getByPlaceholder('Category Name')
-        this.ClickCategoryAdd = page.getByRole('button',{name:'Add'})
+        this.Page=page
+        this.ClickStock = page.locator('li#mi_a_stock_items')
+        this.ClickAddIcon = page.locator(".btn.btn-default.ewAddEdit.ewAdd.btn-sm").first()
+        this.stockCategory = page.locator('#x_Category')
         this.SupplierNumber = page.locator('#x_Supplier_Number')
-        //this.SupplierNumber = page.locator('#x_Supplier_Number').selectOption('Supplier-0000000455');
-        this.StockNumber = page.getByPlaceholder('Stock-000000057')
-        this.StockNameInput = page.locator('')
-        this.AddUnitOfMeasurement = page.locator('#x_Stock_Number')
-        this.UOMID = page.getByPlaceholder('UOM ID')
-        this.UOMDescription = page.getByPlaceholder('UOM Description')
-        this.ClickUOMAdd = page.getByRole('button',{name:'Add'})
-        this.PurchasingPriceInput = page.getByPlaceholder('Purchasing Price')
-        this.SellingPrice = page.getByPlaceholder('Selling Price')
-        this.Notes = page.getByPlaceholder('Notes')
-        this.ClickAddButton=page.locator('#btnAction').first()
-        this.ClickConfirmOk=page.getByRole('button',{name:'OK!'})
-        this.AlertOk=page.getByRole('button',{name:'OK'})
-        this.SerachPanel=page.locator('span[data-caption="Search"]')
-        this.SerachTextbox=page.locator('#psearch')
-        this.SearchButton=page.locator('#btnsubmit')
-
+        this.stockNumber = page.locator('#x_Stock_Number')
+        this.stockName = page.locator('#x_Stock_Name')
+        this.unitOfMeasurement = page.locator('select#x_Unit_Of_Measurement')
+        this.PurchasingPrice = page.locator('#x_Purchasing_Price')
+        this.SellingPrice = page.locator('#x_Selling_Price')
+        this.Notes = page.locator('#x_Notes')
+        this.ClickAddBtn = page.locator("button[type='submit']")
+        this.ClickConfirmOk = page.locator("button.ajs-button.btn.btn-primary").last()
+        this.ClickAlertOk = page.locator("button.ajs-button.btn.btn-primary")
+        this.ClickSearchPanel = page.locator("span[data-caption='Search']")
+        this.EnterSearchSnumber = page.locator("input#psearch")
+        this.ClickSearchBtn = page.locator("button#btnsubmit")
+        this.StockGrid = page.locator("#tbl_a_stock_itemslist>tbody>tr:nth-child(1)>td:nth-child(6)>div>span>span")
     }
-    //method for navigate
-    async NavigateToStockItem()
+    async NavigateToStock()
     {
-        await this.StockLink.waitFor()
-        await this.StockLink.click()
+        await this.ClickStock.waitFor()
+        await this.ClickStock.click()
         await this.ClickAddIcon.waitFor()
         await this.ClickAddIcon.click()
     }
-    //method for stockitem details
-    async StockItemDetails(AddCategory:string,CategoryNameInput:string,SupplierNumber:string,
-        StockNumber:string,StockNameInput:string,
-        AddUnitOfMeasurement:string,PurchasingPriceInput:string,
-        SellingPrice:string,Notes:string)
-    {
-        //await this.AddCategory.fill(CategoryNameInput)
-        await this.SupplierNumber.selectOption('Supplier-0000000455')
-        await this.SupplierNumber.waitFor()
-        this.expNumber = await this.SupplierNumber.inputValue()
-        await this.StockNameInput.fill(StockNameInput)
-        await this.AddUnitOfMeasurement.click()
-        await this.AddUnitOfMeasurement.selectOption(AddUnitOfMeasurement)
-        //await this.AddUnitOfMeasurement.fill(UOMDescription)
-        await this.PurchasingPriceInput.fill(PurchasingPriceInput)
-        await this.SellingPrice.fill(SellingPrice)
-        await this.Notes.fill(Notes)
-        await this.ClickAddButton.click()
+    async addStockDetails(
+        stockCategory: string,
+        supplierNumber: string,
+        stockName: string,
+        unitOfMeasurement: string,
+        purchasingPrice: string,
+        sellingPrice: string,
+        notes: string
+    ){
+        await this.stockCategory.click()
+        await this.stockCategory.selectOption('First Category')
+        await this.SupplierNumber.click()
+        await this.SupplierNumber.selectOption('Supplier-00000000464')
+        await this.stockNumber.waitFor()
+        this.expNumber = await this.stockNumber.inputValue()
+        await this.stockName.fill(stockName)
+        // await this.unitOfMeasurement.waitFor()
+         await this.unitOfMeasurement.click()
+        await this.unitOfMeasurement.selectOption('Item')
+        await this.PurchasingPrice.fill(purchasingPrice)
+        await this.SellingPrice.fill(sellingPrice)
+        await this.Notes.fill(notes)
+        await this.ClickAddBtn.click()
     }
-
-
-    ////method for alert messages
-    async AlertMessages()
-    {
+    async confirmDialog(){
         await this.ClickConfirmOk.waitFor()
         await this.ClickConfirmOk.click()
-        await this.AlertOk.waitFor()
-        await this.AlertOk.click()
+        await this.ClickAlertOk.waitFor()
+        await this.ClickAlertOk.click()
     }
-    // method for supplier search table
-    
-        async StockTable() {
-            if(!await this.SerachTextbox.isVisible()){
-                await this.SerachPanel.click()
-            }
-            await this.SerachTextbox.clear()
-            await this.SerachTextbox.fill(this.expNumber)
-            await this.SearchButton.click()
-            const StockRow = this.page.locator('#tbl_a_stock_itemslist tbody tr',{
-                 hasText:this.expNumber
+    async stockTable(){
+        if(!await this.EnterSearchSnumber.isVisible()){
+            await this.ClickSearchPanel.click()
+        }
+        await this.EnterSearchSnumber.fill(this.expNumber)
+        await this.ClickSearchBtn.click()
+        const StockRow=  this.Page.locator("#tbl_a_stock_itemslist>tbody>tr",
+            {
+                hasText:this.expNumber
             })
-            await expect(StockRow).toBeVisible()
-            console.log(`stock number found in table ${this.expNumber}`)
-            await expect(StockRow).toContainText(this.expNumber)
-    
-        } 
+        await expect(StockRow).toBeVisible()
+        console.log(`Stock Number Found in Table ${this.expNumber}`)
+        await expect(StockRow).toContainText(this.expNumber)
+    }
+
 }
+
+
+
