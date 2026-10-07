@@ -1,0 +1,11 @@
+status code 201
+status test statusText() {
+        return this._initializer.statusText;
+      }
+{
+  id: 1021,
+  name: 'Naveen Verma',
+  email: 'nk1@test.com',
+  gender: 'male',
+  status: 'active'
+}

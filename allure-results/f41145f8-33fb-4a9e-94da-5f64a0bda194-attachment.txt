@@ -1,0 +1,9 @@
+status code is 200
+status message OK
+{
+  id: 1004,
+  name: 'Sneha Iyer',
+  email: 'sneha.iyer@example.com',
+  gender: 'female',
+  status: 'active'
+}
