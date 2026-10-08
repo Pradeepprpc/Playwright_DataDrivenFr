@@ -1,0 +1,11 @@
+status code 200
+status test statusText() {
+        return this._initializer.statusText;
+      }
+{
+  id: 1001,
+  name: 'Aarav Sharma',
+  email: 'aarav.sharma@example.com',
+  gender: 'male',
+  status: 'inactive'
+}
